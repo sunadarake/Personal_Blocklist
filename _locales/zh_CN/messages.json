@@ -1,0 +1,38 @@
+{
+  "completeBlocked": {
+    "message": "拉黑了 $pattern$",
+    "description": "ブロックしました",
+    "placeholders":{
+      "pattern":{
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+
+  "addBlocklist": {
+    "message": "拉黑 $pattern$",
+    "description": "patternをブロックする",
+    "placeholders":{
+      "pattern":{
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+
+  "alreadlyBlocked": {
+    "message": "屏蔽",
+    "description": "ブロック済み"
+  },
+
+  "blockThisUrl": {
+    "message": "屏蔽",
+    "description": "ブロックする"
+  },
+
+  "removeUrlFromBlocklist": {
+    "message": "允许",
+    "description": "ブロック解除"
+  }
+}

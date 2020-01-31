@@ -1,0 +1,54 @@
+{
+  "completeBlocked": {
+    "message": "Blocked $pattern$ completely",
+    "description": "ブロックしました",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "addBlocklist": {
+    "message": "Block $pattern$",
+    "description": "patternをブロックする",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "alreadlyBlocked": {
+    "message": "Blocked",
+    "description": "ブロック済み"
+  },
+  "blockThisUrl": {
+    "message": "Block",
+    "description": "ブロックする"
+  },
+  "removeUrlFromBlocklist": {
+    "message": "Remove",
+    "description": "ブロック解除"
+  },
+  "import": {
+    "message": "Import",
+    "description": "Import"
+  },
+  "export": {
+    "message": "Export",
+    "description": "Export"
+  },
+  "importDescription": {
+    "message": "Enter list of patterns to add (one per line):",
+    "description": "Import Description."
+  },
+  "exportDescription": {
+    "message": "Copy the list to clipboard",
+    "description": "Export Description."
+  },
+  "completeAllBlocked": {
+    "message": "Block list of patterns",
+    "description": "ブロックしました"
+  }
+}

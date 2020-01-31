@@ -1,0 +1,54 @@
+{
+  "completeBlocked": {
+    "message": "$pattern$をブロックしました",
+    "description": "ブロックしました",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "addBlocklist": {
+    "message": "$pattern$ をブロックする",
+    "description": "patternをブロックする",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "alreadlyBlocked": {
+    "message": "ブロック済み",
+    "description": "ブロック済み"
+  },
+  "blockThisUrl": {
+    "message": "ブロックする",
+    "description": "ブロックする"
+  },
+  "removeUrlFromBlocklist": {
+    "message": "ブロック解除",
+    "description": "ブロック解除"
+  },
+  "import": {
+    "message": "インポート",
+    "description": "インポート"
+  },
+  "export": {
+    "message": "エクスポート",
+    "description": "エクスポート"
+  },
+  "importDescription": {
+    "message": "ブロックしたいドメイン/ホストのリストを 1 行に 1 つずつ入力してください。",
+    "description": "importDescription"
+  },
+  "exportDescription": {
+    "message": "リストをコピーすることで、あなたのブロックリストを他人に共有できます",
+    "description": "ExportDescription."
+  },
+  "completeAllBlocked": {
+    "message": "全てのURLをブロックしました",
+    "description": "ブロックしました"
+  }
+}
