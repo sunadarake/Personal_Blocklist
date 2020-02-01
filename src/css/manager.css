@@ -58,6 +58,11 @@ h2 {
   transform: translate(0) !important;
 }
 
+#manager-pattern-list{
+  overflow-y: scroll;
+  height: 350px;
+}
+
 textarea {
   box-sizing: border-box;
   width: 100%;
