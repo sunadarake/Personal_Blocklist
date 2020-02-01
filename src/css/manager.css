@@ -61,6 +61,8 @@ h2 {
 #manager-pattern-list{
   overflow-y: scroll;
   height: 350px;
+  padding: 5px 0;
+  box-sizing: border-box;
 }
 
 textarea {
