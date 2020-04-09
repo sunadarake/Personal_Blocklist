@@ -1,7 +1,7 @@
 {
   "completeBlocked": {
     "message": "Blocked $pattern$ completely",
-    "description": "ブロックしました",
+    "description": "Blocked $pattern$ completely",
     "placeholders": {
       "pattern": {
         "content": "$1",
@@ -11,7 +11,17 @@
   },
   "addBlocklist": {
     "message": "Block $pattern$",
-    "description": "patternをブロックする",
+    "description": "Block $pattern$",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "cancleBlocked": {
+    "message": "Undo $pattern$",
+    "description": "Undo pattern",
     "placeholders": {
       "pattern": {
         "content": "$1",
@@ -21,15 +31,15 @@
   },
   "alreadlyBlocked": {
     "message": "Blocked",
-    "description": "ブロック済み"
+    "description": "Blocked"
   },
   "blockThisUrl": {
     "message": "Block",
-    "description": "ブロックする"
+    "description": "Block"
   },
   "removeUrlFromBlocklist": {
     "message": "Remove",
-    "description": "ブロック解除"
+    "description": "Remove"
   },
   "import": {
     "message": "Import",
@@ -49,6 +59,6 @@
   },
   "completeAllBlocked": {
     "message": "Block list of patterns",
-    "description": "ブロックしました"
+    "description": "Block list of patterns"
   }
 }

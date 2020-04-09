@@ -19,6 +19,16 @@
       }
     }
   },
+  "cancleBlocked": {
+    "message": "$pattern$ のブロックを取り消す",
+    "description": "pattern のブロックを取り消す",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
   "alreadlyBlocked": {
     "message": "ブロック済み",
     "description": "ブロック済み"

@@ -28,21 +28,53 @@ blocklist.searchpage.handleAddBlocklistFromSerachResult = function (response) {
 };
 
 blocklist.searchpage.showAddBlocklistMessage = function (pattern, section) {
-  let showMessage = document.createElement('p');
-  showMessage.style.cssText = 'background:#dff0d8;color:#3c763d;padding:10px;';
+  let showMessage = document.createElement('div');
+  showMessage.style.cssText = 'font-size:14px;background:#dff0d8;padding:30px;box-sizing:border-box;';
   showMessage.innerHTML = chrome.i18n.getMessage("completeBlocked", pattern);
 
+  let cancelMessage = document.createElement('div');
+  cancelMessage.classList.add("cancleBlock");
+  cancelMessage.style.cssText = "cursor: pointer;margin-top:30px;font-size:16px;font-weight: 700; color: #167dff;";
+  cancelMessage.innerHTML = chrome.i18n.getMessage("cancleBlocked", pattern);
+  cancelMessage.addEventListener("click", function (e) {
+    blocklist.searchpage.removePatternFromBlocklists(pattern);
+    blocklist.searchpage.removeBlockMessage(e.target.parentNode);
+  }, false);
+  showMessage.appendChild(cancelMessage);
   let parent = section.parentNode;
   parent.insertBefore(showMessage, section);
 
-  let begin = new Date() - 0;
-  setTimeout(function () {
-    showMessage.style.visibility = "hidden";
-  }, 1000);
-
 }
 
+blocklist.searchpage.removeBlockMessage = function (elm) {
+  elm.parentNode.removeChild(elm);
+}
+
+blocklist.searchpage.removePatternFromBlocklists = function (pattern) {
+  chrome.runtime.sendMessage({
+    type: blocklist.common.DELETE_FROM_BLOCKLIST,
+    pattern: pattern
+  }, blocklist.searchpage.handleRemoveBlocklistFromSerachResult);
+
+  blocklist.searchpage.displaySectionsFromSearchResult(pattern);
+}
+
+blocklist.searchpage.handleRemoveBlocklistFromSerachResult = function (response) {
+  if (response.blocklist != undefined) {
+    blocklist.searchpage.blocklist = response.blocklist;
+  }
+}
+
+blocklist.searchpage.displaySectionsFromSearchResult = function (pattern) {
+  blocklist.searchpage.toggleSections(pattern, "block");
+}
+
+
 blocklist.searchpage.deleteSectionsFromSearchResult = function (pattern) {
+  blocklist.searchpage.toggleSections(pattern, "none");
+};
+
+blocklist.searchpage.toggleSections = function (pattern, display) {
   var searchResultPatterns = document.querySelectorAll(blocklist.searchpage.SEARCH_RESULT_DIV_BOX);
 
   for (let i = 0, length = searchResultPatterns.length; i < length; i++) {
@@ -52,11 +84,11 @@ blocklist.searchpage.deleteSectionsFromSearchResult = function (pattern) {
       var HostLinkHref = searchResultHostLink.getAttribute("href");
       var sectionLink = HostLinkHref.replace(blocklist.common.HOST_REGEX, '$2');
       if (pattern === sectionLink) {
-        searchResultPattern.style.display = "none";
+        searchResultPattern.style.display = display;
       }
     }
   }
-};
+}
 
 blocklist.searchpage.addBlocklistFromSearchResult = function (hostlink, searchresult) {
   var pattern = hostlink;
