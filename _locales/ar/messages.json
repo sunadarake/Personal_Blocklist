@@ -1,0 +1,64 @@
+{
+  "completeBlocked": {
+    "message": "كليا $pattern$ تم حظر",
+    "description": "كليا $pattern$ تم حظر",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "addBlocklist": {
+    "message": "$pattern$ حظر",
+    "description": "$pattern$ حظر",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "cancleBlocked": {
+    "message": "$pattern$ التراجع عن حظر",
+    "description": "pattern التراجع عن حظر",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "alreadlyBlocked": {
+    "message": "محظور",
+    "description": "محظور"
+  },
+  "blockThisUrl": {
+    "message": "حظر",
+    "description": "حظر"
+  },
+  "removeUrlFromBlocklist": {
+    "message": "حذف",
+    "description": "حذف"
+  },
+  "import": {
+    "message": "استيراد",
+    "description": "استيراد"
+  },
+  "export": {
+    "message": "تصدير",
+    "description": "تصدير"
+  },
+  "importDescription": {
+    "message": ":أدخل قائمة الروابط/النطاقات لإضافتها (واحد لكل سطر)",
+    "description": "Import Description."
+  },
+  "exportDescription": {
+    "message": "انسخ القائمة إلى الحافظة",
+    "description": "Export Description."
+  },
+  "completeAllBlocked": {
+    "message": "تمت الإضافة لقائمة الحظر",
+    "description": "تمت الإضافة لقائمة الحظر"
+  }
+}
