@@ -1,0 +1,80 @@
+{
+  "completeBlocked": {
+    "message": "$pattern$ успешно заблокирован",
+    "description": "$pattern$ успешно заблокирован",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "addBlocklist": {
+    "message": "Заблокировать $pattern$",
+    "description": "Заблокировать $pattern$",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "cancleBlocked": {
+    "message": "Разблокировать $pattern$",
+    "description": "Разблокировать pattern",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "exapmle": "exapmle.com"
+      }
+    }
+  },
+  "alreadlyBlocked": {
+    "message": "Заблокирован",
+    "description": "Заблокирован"
+  },
+  "blockThisUrl": {
+    "message": "Заблокировать",
+    "description": "Заблокировать"
+  },
+  "removeUrlFromBlocklist": {
+    "message": "Удалить",
+    "description": "Удалить"
+  },
+  "blockListHeader": {
+    "message": "Заблокированные домены",
+    "description": "Заблокированные домены"
+  },
+  "import": {
+    "message": "Импорт",
+    "description": "Импорт"
+  },
+  "export": {
+    "message": "Экспорт",
+    "description": "Экспорт"
+  },
+  "importDescription": {
+    "message": "Внесите домены для добавления(по одному на строку):",
+    "description": "Описание импорта."
+  },
+  "exportDescription": {
+    "message": "Скопировать всё в буфер обмена",
+    "description": "Описание экспорта."
+  },
+  "completeAllBlocked": {
+    "message": "Блок-лист доменов",
+    "description": "Блок-лист доменов"
+  },
+  "save": {
+    "message": "Сохранить",
+    "description": "Сохранить"
+  },
+  "copy": {
+    "message": "Скопировать все",
+    "description": "Скопировать все"
+  },
+  "back": {
+    "message": "Назад",
+    "description": "Назад"
+  }
+}
