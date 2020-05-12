@@ -42,8 +42,8 @@
     "description": "Удалить"
   },
   "blockListHeader": {
-    "message": "Заблокированные домены",
-    "description": "Заблокированные домены"
+    "message": "Чёрный список",
+    "description": "Чёрный список"
   },
   "import": {
     "message": "Импорт",
@@ -62,8 +62,8 @@
     "description": "Описание экспорта."
   },
   "completeAllBlocked": {
-    "message": "Блок-лист доменов",
-    "description": "Блок-лист доменов"
+    "message": "Чёрный список дополнен",
+    "description": "Чёрный список дополнен"
   },
   "save": {
     "message": "Сохранить",
