@@ -144,11 +144,11 @@ blocklist.manager.refresh = function () {
 
 blocklist.manager.clickImportButton = function () {
 
-  $("#io-head").text("Import");
+  $("#io-head").text(chrome.i18n.getMessage('import'));
 
   let submitArea = $("#submit-area");
   submitArea.off('click');
-  submitArea.text("Save");
+  submitArea.text(chrome.i18n.getMessage("save"));
   $("#io-desc").text(chrome.i18n.getMessage('importDescription'));
   $("#io-text").val('');
   submitArea.on("click", function () {
@@ -190,7 +190,7 @@ blocklist.manager.clickExportButton = function () {
 
 blocklist.manager.handleExportButton = function (response) {
 
-  $("#io-head").text("Export");
+  $("#io-head").text(chrome.i18n.getMessage('export'));
 
   $('#io-desc').text(chrome.i18n.getMessage('exportDescription'));
   let ioText = $("#io-text");
@@ -203,13 +203,18 @@ blocklist.manager.handleExportButton = function (response) {
 
   let submitArea = $("#submit-area");
   submitArea.off('click');
-  submitArea.text("Copy all");
+  submitArea.text(chrome.i18n.getMessage('copy'));
   submitArea.click(function () {
     ioText.select();
     document.execCommand('copy');
   });
 
   $("#io-area").toggleClass('io-area-open');
+}
+
+blocklist.manager.localizeHeader = function() {
+  let blockListHeader = $("#blockListHeader");
+  blockListHeader.html(chrome.i18n.getMessage("blockListHeader"));
 }
 
 blocklist.manager.createIoButton = function () {
@@ -230,6 +235,7 @@ blocklist.manager.createIoButton = function () {
 }
 
 blocklist.manager.createBackButton = function () {
+  $("#back").text(chrome.i18n.getMessage("back"))
   $("#back").on("click", function () {
     $("#io-area").toggleClass('io-area-open');
   });
@@ -237,6 +243,7 @@ blocklist.manager.createBackButton = function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   blocklist.manager.refresh();
+  blocklist.manager.localizeHeader();
   blocklist.manager.createIoButton();
   blocklist.manager.createBackButton();
 });
