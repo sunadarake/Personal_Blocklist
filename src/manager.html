@@ -11,27 +11,40 @@
 
 <body>
 
-  <div id="io-area">
-    <div id='back'></div>
-    <div id='io-head'></div>
-    <div id='io-desc'></div>
-    <textarea id='io-text'
-      placeholder="https://example.com&#13;&#10;http://example.com/foo/bar.html&#13;&#10;https://example.com/foo/&#13;&#10;example.com">
-    </textarea>
+  <div id="second_floor">
+    <div id="back"></div>
 
-    <div id='submit-area'></div>
+    <div id="io-area">
+      <div id="io-head"></div>
+      <div id="io-desc"></div>
 
+      <textarea id="io-text"
+        placeholder="https://example.com&#13;&#10;http://example.com/foo/bar.html&#13;&#10;https://example.com/foo/&#13;&#10;example.com">
+      </textarea>
 
+      <div id="submit-area"></div>
+    </div>
+
+    <div id="config-area">
+      <input type="checkbox" id="PWS"><label id="PWS_config"></label>
+      <div id="save_configs"></div>
+    </div>
   </div>
 
   <div id="wrap">
     <div id="header">
-      <h1><img src="../images/icon.png">Personal Blocklist</h1>
+      <h1>
+        <img src="../images/icon.png">
+        Personal Blocklist
+      </h1>
     </div>
+
     <div id="button">
       <div id="import"></div>
       <div id="export"></div>
+      <div id="config"></div>
     </div>
+
     <div id="content">
       <div id="current-blocklink"></div>
       <h2 id="blockListHeader"></h2>

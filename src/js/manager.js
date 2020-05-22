@@ -114,7 +114,7 @@ blocklist.manager.addBlockCurrentHostLink = function (blocklistPatterns) {
   });
 }
 
-blocklist.manager.handleRefreshResponse = function (response) {
+blocklist.manager.handleRefreshBlockListResponse = function (response) {
   $("#manager-pattern-list").show('fast');
 
   let length = response.blocklist.length,
@@ -131,15 +131,33 @@ blocklist.manager.handleRefreshResponse = function (response) {
   } else {
     blocklist.manager.addBlockCurrentHostLink([]);
   }
-
-
 }
 
 blocklist.manager.refresh = function () {
   chrome.runtime.sendMessage({
     type: blocklist.common.GET_BLOCKLIST
   },
-    blocklist.manager.handleRefreshResponse);
+    blocklist.manager.handleRefreshBlockListResponse);
+};
+
+blocklist.manager.handleRefreshConfigResponse = function (response) {
+  if (!response.configList)
+    return;
+
+  let length = response.configList.length;
+
+  for (let i = 0; i < length; i++) {
+    $("#"+response.configList[i].name).prop(
+      response.configList[i].attribute,
+      response.configList[i].value)
+  }
+}
+
+blocklist.manager.refreshConfigs = function () {
+  chrome.runtime.sendMessage({
+    type: blocklist.common.GET_CONFIG
+  },
+    blocklist.manager.handleRefreshConfigResponse);
 };
 
 blocklist.manager.clickImportButton = function () {
@@ -155,7 +173,9 @@ blocklist.manager.clickImportButton = function () {
     let pattern = $("#io-text").val();
     blocklist.manager.handleImportButton(pattern);
   });
-  $("#io-area").toggleClass('io-area-open');
+
+  $("#io-area").css('display', 'block');
+  $("#second_floor").toggleClass('second_floor-open');
 };
 
 
@@ -209,7 +229,49 @@ blocklist.manager.handleExportButton = function (response) {
     document.execCommand('copy');
   });
 
-  $("#io-area").toggleClass('io-area-open');
+  $("#io-area").css('display', 'block');
+  $("#second_floor").toggleClass('second_floor-open');
+}
+
+blocklist.manager.clickConfigButton = function () {
+  $("#PWS_config").text(chrome.i18n.getMessage('PWS_config'));
+
+  let save_btn = $("#save_configs");
+  save_btn.text(chrome.i18n.getMessage("save"));
+  save_btn.on("click", function () {
+    // Put saving configs here
+    let configs = [];
+    configs.push({
+      name: 'PWS',
+      attribute: 'checked',
+      value: $("#PWS").prop('checked')
+    });
+
+    blocklist.manager.handleConfigButton(configs);
+  });
+
+  $("#config-area").css('display', 'block');
+  $("#second_floor").toggleClass('second_floor-open');
+};
+
+blocklist.manager.handleConfigButton = function (configs) {
+  chrome.runtime.sendMessage({
+      type: blocklist.common.SAVE_CONFIG,
+      configList: configs
+    },
+      blocklist.manager.handleConfigButtonResult);
+};
+
+blocklist.manager.handleConfigButtonResult = function (response) {
+  let showMessage = document.createElement('p');
+  showMessage.style.cssText = 'background:#dff0d8;color:#3c763d;padding:10px;';
+  showMessage.innerHTML = chrome.i18n.getMessage("completeSaveConfig");
+
+  $('#save_configs').after(showMessage);
+
+  setTimeout(function () {
+    showMessage.style.visibility = "hidden";
+  }, 1000);
 }
 
 blocklist.manager.localizeHeader = function() {
@@ -231,21 +293,31 @@ blocklist.manager.createIoButton = function () {
     blocklist.manager.clickImportButton();
   });
 
-
+  let config_btn = $("#config");
+  config_btn.text(chrome.i18n.getMessage("config"));
+  config_btn.on("click", function () {
+    blocklist.manager.clickConfigButton();
+  });
 }
 
 blocklist.manager.createBackButton = function () {
   $("#back").text(chrome.i18n.getMessage("back"))
   $("#back").on("click", function () {
-    $("#io-area").toggleClass('io-area-open');
+    $("#second_floor").toggleClass('second_floor-open');
+
+    // collapse all child div
+    $("#second_floor").children(":not(#back)")
+                      .each(
+                        function(i, childDiv) {
+                          $(this).css('display', 'none');
+                        })
   });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
   blocklist.manager.refresh();
+  blocklist.manager.refreshConfigs();
   blocklist.manager.localizeHeader();
   blocklist.manager.createIoButton();
   blocklist.manager.createBackButton();
 });
-
-

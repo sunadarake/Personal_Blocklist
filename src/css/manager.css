@@ -37,7 +37,11 @@ h2 {
 }
 
 
-#io-area {
+#io-area, #config-area {
+  display: none;
+}
+
+#second_floor {
   z-index: 9999;
   min-width: 400px;
   width: 100%;
@@ -54,7 +58,7 @@ h2 {
   background-color: #fff;
 }
 
-.io-area-open {
+.second_floor-open {
   transform: translate(0) !important;
 }
 
@@ -74,7 +78,7 @@ textarea {
   color: #333;
   }
 
-#submit-area {
+#submit-area, #save_configs {
   display: inline-block;
   margin:10px 0;
   background-color: #555555;
@@ -93,7 +97,7 @@ textarea {
   font-size: 15px;
 }
 
-#import, #export {
+#import, #export, #config {
   display: inline-block;
   margin:10px 0 0 20px;
   background-color: #555;

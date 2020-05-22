@@ -76,5 +76,17 @@
   "back": {
     "message": "Back",
     "description": "Back"
+  },
+  "config": {
+    "message": "Config",
+    "description": "Config"
+  },
+  "PWS_config": {
+    "message": "Don't block personalized searches",
+    "description": "When this config on, extension blocks nothing in personalized searches."
+  },
+  "completeSaveConfig": {
+    "message": "Configs save completly",
+    "description": "Configs save completly."
   }
 }

@@ -114,7 +114,9 @@ blocklist.searchpage.insertAddBlockLinkInSearchResult = function (searchResult, 
 };
 
 blocklist.searchpage.isPwsParamUsed = function () {
-  return blocklist.searchpage.PWS_REGEX.test(location.href);
+  return $("#PWS").is(':checked')                         // if user choose to don't block personalized searches
+    ? blocklist.searchpage.PWS_REGEX.test(location.href)  // return containing of pws param
+    : false;                                              // else ignore it (by default)
 };
 
 blocklist.searchpage.modifySearchResults = function () {

@@ -6,6 +6,8 @@ blocklist.common.GET_BLOCKLIST = 'getBlocklist';
 blocklist.common.ADD_TO_BLOCKLIST = 'addToBlocklist';
 blocklist.common.ADD_LIST_TO_BLOCKLIST = 'addListToBlocklist';
 blocklist.common.DELETE_FROM_BLOCKLIST = 'deleteFromBlocklist';
+blocklist.common.GET_CONFIG = 'getConfig';
+blocklist.common.SAVE_CONFIG = 'saveConfig';
 
 blocklist.common.HOST_REGEX = new RegExp(
   '^https?://(www[.])?([0-9a-zA-Z.-]+).*$');
@@ -34,7 +36,6 @@ blocklist.common.startBackgroundListeners = function () {
           success: 1,
           pattern: request.pattern
         });
-
       } else if (request.type == blocklist.common.ADD_LIST_TO_BLOCKLIST) {
         let regex = /(https?:\/\/)?(www[.])?([0-9a-zA-Z.-]+).*(\r\n|\n)?/g;
         let arr = [];
@@ -56,8 +57,6 @@ blocklist.common.startBackgroundListeners = function () {
           success: 1,
           pattern: request.pattern
         });
-
-
       } else if (request.type == blocklist.common.DELETE_FROM_BLOCKLIST) {
         let blocklists = JSON.parse(localStorage['blocklist']);
         let index = blocklists.indexOf(request.pattern);
@@ -68,9 +67,26 @@ blocklist.common.startBackgroundListeners = function () {
             pattern: request.pattern
           });
         }
+      } else if (request.type == blocklist.common.GET_CONFIG) {
+        let configs = [];
+        if (!localStorage.configList) {
+          localStorage['configList'] = JSON.stringify(configs);
+        } else {
+          configs = JSON.parse(localStorage['configList']);
+        }
+
+        sendResponse({
+          configList: configs
+        });
+      } else if (request.type == blocklist.common.SAVE_CONFIG) {
+        localStorage['configList'] = JSON.stringify(request.configList);
+
+        sendResponse({
+          success: 1
+        });
       }
     }
-  )
+  );
 };
 
 /*
@@ -84,6 +100,4 @@ blocklist.common.getHostNameFromUrl = function (pattern) {
   return pattern.replace(blocklist.common.HOST_REGEX, '$2');
 }
 
-
 blocklist.common.startBackgroundListeners();
-
