@@ -75,7 +75,7 @@ blocklist.manager.handleAddBlocklistResponse = function (response) {
   chrome.runtime.sendMessage({
     type: blocklist.common.GET_BLOCKLIST
   },
-    blocklist.manager.handleRefreshResponse);
+    blocklist.manager.handleRefreshBlockListResponse);
 }
 
 blocklist.manager.hideCurrentHost = function (pattern) {
