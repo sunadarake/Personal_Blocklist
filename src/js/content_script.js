@@ -1,4 +1,3 @@
-
 blocklist.searchpage = {};
 
 blocklist.searchpage.blocklist = [];

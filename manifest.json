@@ -7,7 +7,8 @@
   "default_locale": "en",
   "background": {
     "scripts": [
-      "src/js/common.js"
+      "src/js/common.js",
+      "src/js/background.js"
     ]
   },
   "browser_action": {
@@ -240,6 +241,7 @@
       "run_at": "document_start",
       "js": [
         "src/js/lib/jquery.min.js",
+        "src/js/common.js",
         "src/js/content_script.js"
       ]
     }
