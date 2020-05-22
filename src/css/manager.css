@@ -37,7 +37,7 @@ h2 {
 }
 
 
-#io-area, #config-area {
+#io-area, #config_area {
   display: none;
 }
 
@@ -78,53 +78,37 @@ textarea {
   color: #333;
   }
 
-#submit-area, #save_configs {
-  display: inline-block;
-  margin:10px 0;
-  background-color: #555555;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor:pointer;
-
-}
-
 #io-desc {
   margin:5px 0;
   font-size: 15px;
 }
 
-#import, #export, #config {
-  display: inline-block;
-  margin:10px 0 0 20px;
-  background-color: #555;
-  border: none;
-  color: #fff;
-  padding: 6px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor:pointer;
-}
-
-#back {
-  display: inline-block;
-  margin:10px 0;
-  background-color: #555555;
-  border: none;
-  color: white;
-  padding: 6px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor:pointer;
-}
-
-#io-head {
+#io-head, #config_head {
   margin: 5px 0;
   font-weight: 700;
   font-size: 18px;
+}
+
+.button_base {
+  background-color: #555;
+  border: none;
+  color: #fff;
+  cursor:pointer;
+  display: inline-block;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button_menu {
+  margin:10px 0 0 20px;
+}
+
+.button_active {
+  margin:10px 0;
+}
+
+.bottom_element {
+  position: absolute;
+  bottom: 10px;
 }

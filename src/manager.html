@@ -12,7 +12,7 @@
 <body>
 
   <div id="second_floor">
-    <div id="back"></div>
+    <div id="back" class="button_base button_active"></div>
 
     <div id="io-area">
       <div id="io-head"></div>
@@ -20,14 +20,15 @@
 
       <textarea id="io-text"
         placeholder="https://example.com&#13;&#10;http://example.com/foo/bar.html&#13;&#10;https://example.com/foo/&#13;&#10;example.com">
-      </textarea>
+      </textarea><br>
 
-      <div id="submit-area"></div>
+      <div id="submit-area" class="button_base button_active bottom_element"></div>
     </div>
 
-    <div id="config-area">
-      <input type="checkbox" id="PWS"><label id="PWS_config"></label>
-      <div id="save_configs"></div>
+    <div id="config_area">
+      <div id="config_head"></div>
+      <input type="checkbox" id="PWS"><label id="PWS_config"></label><br>
+      <div id="save_configs" class="button_base button_active bottom_element"></div>
     </div>
   </div>
 
@@ -40,9 +41,9 @@
     </div>
 
     <div id="button">
-      <div id="import"></div>
-      <div id="export"></div>
-      <div id="config"></div>
+      <div id="import" class="button_base button_menu"></div>
+      <div id="export" class="button_base button_menu"></div>
+      <div id="config" class="button_base button_menu"></div>
     </div>
 
     <div id="content">

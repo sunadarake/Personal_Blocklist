@@ -234,6 +234,8 @@ blocklist.manager.handleExportButton = function (response) {
 }
 
 blocklist.manager.clickConfigButton = function () {
+  $("#config_head").text(chrome.i18n.getMessage('config'));
+
   $("#PWS_config").text(chrome.i18n.getMessage('PWS_config'));
 
   let save_btn = $("#save_configs");
@@ -250,7 +252,7 @@ blocklist.manager.clickConfigButton = function () {
     blocklist.manager.handleConfigButton(configs);
   });
 
-  $("#config-area").css('display', 'block');
+  $("#config_area").css('display', 'block');
   $("#second_floor").toggleClass('second_floor-open');
 };
 
