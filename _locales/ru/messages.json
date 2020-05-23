@@ -76,5 +76,9 @@
   "back": {
     "message": "Назад",
     "description": "Назад"
+  },
+  "pws_option_mes": {
+    "message": "прекращение блокировки при использовании pws=0 по URL",
+    "description": "прекращение блокировки при использовании pws=0 по URL"
   }
 }

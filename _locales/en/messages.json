@@ -41,6 +41,10 @@
     "message": "Remove",
     "description": "Remove"
   },
+  "blockListHeader": {
+    "message": "Block List",
+    "description": "Block list header"
+  },
   "import": {
     "message": "Import",
     "description": "Import"
@@ -60,5 +64,21 @@
   "completeAllBlocked": {
     "message": "Block list of patterns",
     "description": "Block list of patterns"
+  },
+  "pws_option_mes": {
+    "message": "stop blocking when using pws=0 at URL",
+    "description": "stop blocking when using pws=0 at URL"
+  },
+  "save": {
+    "message": "Save",
+    "description": "Save"
+  },
+  "copy": {
+    "message": "Copy all",
+    "description": "Copy all"
+  },
+  "back": {
+    "message": "Back",
+    "description": "Back"
   }
 }

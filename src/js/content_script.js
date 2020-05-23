@@ -3,6 +3,8 @@ blocklist.searchpage = {};
 
 blocklist.searchpage.blocklist = [];
 
+blocklist.searchpage.pws_option = "off";
+
 blocklist.searchpage.SEARCH_RESULT_DIV_BOX = "div.g";
 
 blocklist.searchpage.PWS_REGEX = new RegExp('(&|[?])pws=0');
@@ -29,12 +31,12 @@ blocklist.searchpage.handleAddBlocklistFromSerachResult = function (response) {
 
 blocklist.searchpage.showAddBlocklistMessage = function (pattern, section) {
   let showMessage = document.createElement('div');
-  showMessage.style.cssText = 'font-size:14px;background:#dff0d8;padding:30px;box-sizing:border-box;';
+  showMessage.style.cssText = 'font-size:15px;background:#d8f7eb;padding:30px;margin:20px 0;box-sizing:border-box;';
   showMessage.innerHTML = chrome.i18n.getMessage("completeBlocked", pattern);
 
   let cancelMessage = document.createElement('div');
   cancelMessage.classList.add("cancleBlock");
-  cancelMessage.style.cssText = "cursor: pointer;margin-top:30px;font-size:16px;font-weight: 700; color: #167dff;";
+  cancelMessage.style.cssText = "cursor: pointer;margin-top:20px;font-size:16px;font-weight: 700; color: #0066c0;";
   cancelMessage.innerHTML = chrome.i18n.getMessage("cancleBlocked", pattern);
   cancelMessage.addEventListener("click", function (e) {
     blocklist.searchpage.removePatternFromBlocklists(pattern);
@@ -113,13 +115,15 @@ blocklist.searchpage.insertAddBlockLinkInSearchResult = function (searchResult, 
   }, false);
 };
 
-blocklist.searchpage.isPwsParamUsed = function () {
+blocklist.searchpage.isPwsFeatureUsed = function () {
+  if (blocklist.searchpage.pws_option == "off") return false;
+
   return blocklist.searchpage.PWS_REGEX.test(location.href);
 };
 
 blocklist.searchpage.modifySearchResults = function () {
 
-  if (blocklist.searchpage.isPwsParamUsed()) return;
+  if (blocklist.searchpage.isPwsFeatureUsed()) return;
 
   var searchResultPatterns = document.querySelectorAll(blocklist.searchpage.SEARCH_RESULT_DIV_BOX);
 
@@ -147,8 +151,19 @@ blocklist.searchpage.refreshBlocklist = function () {
     blocklist.searchpage.handleGetBlocklistResponse);
 };
 
+blocklist.searchpage.getPwsOption = function () {
+  chrome.runtime.sendMessage({
+    type: blocklist.common.GET_PWS_OPTION_VAL
+  },
+    blocklist.searchpage.handleGetPwsOptionResponse);
+}
+
+blocklist.searchpage.handleGetPwsOptionResponse = function (response) {
+  blocklist.searchpage.pws_option = response.pws_option;
+}
 
 blocklist.searchpage.refreshBlocklist();
+blocklist.searchpage.getPwsOption();
 
 document.addEventListener("DOMContentLoaded", function () {
   blocklist.searchpage.modifySearchResults();

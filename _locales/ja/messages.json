@@ -60,5 +60,25 @@
   "completeAllBlocked": {
     "message": "全てのURLをブロックしました",
     "description": "ブロックしました"
+  },
+  "pws_option_mes": {
+    "message": "URLにpws=0を使用時、ブロックしない",
+    "description": "stop blocking when using pws=0 at URL"
+  },
+  "save": {
+    "message": "保存",
+    "description": "Save"
+  },
+  "copy": {
+    "message": "全てコピー",
+    "description": "Copy all"
+  },
+  "back": {
+    "message": "戻る",
+    "description": "Back"
+  },
+  "blockListHeader": {
+    "message": "ブロックリスト",
+    "description": "Block list header"
   }
 }

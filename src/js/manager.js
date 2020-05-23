@@ -144,11 +144,11 @@ blocklist.manager.refresh = function () {
 
 blocklist.manager.clickImportButton = function () {
 
-  $("#io-head").text("Import");
+  $("#io-head").text(chrome.i18n.getMessage('import'));
 
   let submitArea = $("#submit-area");
   submitArea.off('click');
-  submitArea.text("Save");
+  submitArea.text(chrome.i18n.getMessage("save"));
   $("#io-desc").text(chrome.i18n.getMessage('importDescription'));
   $("#io-text").val('');
   submitArea.on("click", function () {
@@ -190,7 +190,7 @@ blocklist.manager.clickExportButton = function () {
 
 blocklist.manager.handleExportButton = function (response) {
 
-  $("#io-head").text("Export");
+  $("#io-head").text(chrome.i18n.getMessage('export'));
 
   $('#io-desc').text(chrome.i18n.getMessage('exportDescription'));
   let ioText = $("#io-text");
@@ -203,13 +203,18 @@ blocklist.manager.handleExportButton = function (response) {
 
   let submitArea = $("#submit-area");
   submitArea.off('click');
-  submitArea.text("Copy all");
+  submitArea.text(chrome.i18n.getMessage('copy'));
   submitArea.click(function () {
     ioText.select();
     document.execCommand('copy');
   });
 
   $("#io-area").toggleClass('io-area-open');
+}
+
+blocklist.manager.localizeHeader = function() {
+  let blockListHeader = $("#blockListHeader");
+  blockListHeader.html(chrome.i18n.getMessage("blockListHeader"));
 }
 
 blocklist.manager.createIoButton = function () {
@@ -230,15 +235,50 @@ blocklist.manager.createIoButton = function () {
 }
 
 blocklist.manager.createBackButton = function () {
+  $("#back").text(chrome.i18n.getMessage("back"))
   $("#back").on("click", function () {
     $("#io-area").toggleClass('io-area-open');
   });
 }
 
+blocklist.manager.createPwsOptionBox = function () {
+  chrome.runtime.sendMessage({
+    type: blocklist.common.GET_PWS_OPTION_VAL
+  },
+    blocklist.manager.handlePwsOptionBox);
+}
+
+blocklist.manager.handlePwsOptionBox = function (response) {
+  $("#pws_option_mes").text(chrome.i18n.getMessage("pws_option_mes"));
+
+  if (response.pws_option == "on")
+    $("#pws_option").prop("checked", true);
+
+  $("#pws_option").on("change", function () {
+    let val = $("#pws_option").prop("checked") ? "on" : "off";
+    blocklist.manager.clickPwsOptionCheckbox(val);
+  });
+}
+
+blocklist.manager.clickPwsOptionCheckbox = function (val) {
+  chrome.runtime.sendMessage({
+    type: blocklist.common.CHANGE_PWS_OPTION_VAL,
+    val: val
+  },
+    blocklist.manager.handlePwsOptionCheckboxResult);
+};
+
+blocklist.manager.handlePwsOptionCheckboxResult = function (response) {
+  if (blocklist.common.pws_option_val)
+    blocklist.common.pws_option_val = response.pws_option;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   blocklist.manager.refresh();
+  blocklist.manager.localizeHeader();
   blocklist.manager.createIoButton();
   blocklist.manager.createBackButton();
+  blocklist.manager.createPwsOptionBox();
 });
 
 

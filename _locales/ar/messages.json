@@ -60,5 +60,21 @@
   "completeAllBlocked": {
     "message": "تمت الإضافة لقائمة الحظر",
     "description": "تمت الإضافة لقائمة الحظر"
+  },
+  "pws_option_mes": {
+    "message": " توقف عن الحظر عند استخدام pws = 0 في URL",
+    "description": "stop blocking when using pws=0 at URL"
+  },
+  "save": {
+    "message": "حفظ",
+    "description": "Save"
+  },
+  "copy": {
+    "message": "نسخ جميع",
+    "description": "Copy all"
+  },
+  "back": {
+    "message": "إرجاع",
+    "description": "Back"
   }
 }

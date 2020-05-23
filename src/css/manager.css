@@ -124,3 +124,11 @@ textarea {
   font-weight: 700;
   font-size: 18px;
 }
+
+#options_box {
+  padding: 20px 20px;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+}

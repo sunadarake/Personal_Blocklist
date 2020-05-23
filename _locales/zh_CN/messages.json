@@ -40,5 +40,21 @@
   "removeUrlFromBlocklist": {
     "message": "允许",
     "description": "ブロック解除"
+  },
+  "pws_option_mes": {
+    "message": "网址上使用pws = 0时停止阻止",
+    "description": "stop blocking when using pws=0 at URL"
+  },
+  "save": {
+    "message": "拯救",
+    "description": "Save"
+  },
+  "copy": {
+    "message": "所有的副本",
+    "description": "Copy all"
+  },
+  "back": {
+    "message": "回去",
+    "description": "Back"
   }
 }

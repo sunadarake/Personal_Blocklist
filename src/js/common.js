@@ -2,10 +2,14 @@ let blocklist = {};
 
 blocklist.common = {};
 
+blocklist.common.pws_option_val = "off";
+
 blocklist.common.GET_BLOCKLIST = 'getBlocklist';
 blocklist.common.ADD_TO_BLOCKLIST = 'addToBlocklist';
 blocklist.common.ADD_LIST_TO_BLOCKLIST = 'addListToBlocklist';
 blocklist.common.DELETE_FROM_BLOCKLIST = 'deleteFromBlocklist';
+blocklist.common.GET_PWS_OPTION_VAL = "getPwsOptionVal";
+blocklist.common.CHANGE_PWS_OPTION_VAL = "changePwsOptionVal";
 
 blocklist.common.HOST_REGEX = new RegExp(
   '^https?://(www[.])?([0-9a-zA-Z.-]+).*$');
@@ -14,6 +18,7 @@ blocklist.common.startBackgroundListeners = function () {
   chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
       if (request.type == blocklist.common.GET_BLOCKLIST) {
+        console.log(localStorage['blocklist_pws_option']);
         let blocklistPatterns = [];
         if (!localStorage.blocklist) {
           localStorage['blocklist'] = JSON.stringify(blocklistPatterns);
@@ -68,6 +73,19 @@ blocklist.common.startBackgroundListeners = function () {
             pattern: request.pattern
           });
         }
+      } else if (request.type == blocklist.common.GET_PWS_OPTION_VAL) {
+        if (!localStorage.blocklist_pws_option)
+          localStorage['blocklist_pws_option'] = "off";
+
+        sendResponse({
+          pws_option: localStorage['blocklist_pws_option']
+        });
+      } else if (request.type == blocklist.common.CHANGE_PWS_OPTION_VAL) {
+        localStorage['blocklist_pws_option'] = request.val;
+
+        sendResponse({
+          pws_option: request.val
+        });
       }
     }
   )
