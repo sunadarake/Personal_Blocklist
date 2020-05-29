@@ -62,7 +62,7 @@
     "description": "تمت الإضافة لقائمة الحظر"
   },
   "pws_option_mes": {
-    "message": " توقف عن الحظر عند استخدام pws = 0 في URL",
+    "message": "في رابط البحث &pws=0 إيقاف الحظر عند إضافة",
     "description": "stop blocking when using pws=0 at URL"
   },
   "save": {
@@ -70,11 +70,11 @@
     "description": "Save"
   },
   "copy": {
-    "message": "نسخ جميع",
+    "message": "نسخ الكل",
     "description": "Copy all"
   },
   "back": {
-    "message": "إرجاع",
+    "message": "رجوع",
     "description": "Back"
   }
 }
