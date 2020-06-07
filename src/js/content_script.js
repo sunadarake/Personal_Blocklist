@@ -3,11 +3,11 @@ blocklist.searchpage = {};
 
 blocklist.searchpage.blocklist = [];
 
+blocklist.searchpage.mutationObserver = null;
+
 blocklist.searchpage.pws_option = "off";
 
 blocklist.searchpage.SEARCH_RESULT_DIV_BOX = "div.g";
-
-blocklist.searchpage.PWS_REGEX = new RegExp('(&|[?])pws=0');
 
 blocklist.searchpage.handleGetBlocklistResponse = function (response) {
   if (response.blocklist != undefined) {
@@ -118,14 +118,15 @@ blocklist.searchpage.insertAddBlockLinkInSearchResult = function (searchResult, 
 blocklist.searchpage.isPwsFeatureUsed = function () {
   if (blocklist.searchpage.pws_option == "off") return false;
 
-  return blocklist.searchpage.PWS_REGEX.test(location.href);
+  const PWS_REGEX = /(&|[?])pws=0/;
+  return PWS_REGEX.test(location.href);
 };
 
-blocklist.searchpage.modifySearchResults = function () {
+blocklist.searchpage.modifySearchResults = function (parent_dom) {
 
   if (blocklist.searchpage.isPwsFeatureUsed()) return;
 
-  var searchResultPatterns = document.querySelectorAll(blocklist.searchpage.SEARCH_RESULT_DIV_BOX);
+  var searchResultPatterns = parent_dom.querySelectorAll(blocklist.searchpage.SEARCH_RESULT_DIV_BOX);
 
   for (let i = 0, length = searchResultPatterns.length; i < length; i++) {
     var searchResultPattern = searchResultPatterns[i];
@@ -162,9 +163,40 @@ blocklist.searchpage.handleGetPwsOptionResponse = function (response) {
   blocklist.searchpage.pws_option = response.pws_option;
 }
 
+blocklist.searchpage.initMutationObserver = function () {
+  if (blocklist.searchpage.mutationObserver != null) return;
+
+  blocklist.searchpage.mutationObserver = new MutationObserver(function (mutations) {
+    blocklist.searchpage.modifySearchResultsAdded(mutations);
+  });
+
+  const SEARCH_RESULTS_WRAP = "div#center_col";
+  let target = document.querySelector(SEARCH_RESULTS_WRAP);
+  let config = { childList: true, subtree: true };
+  blocklist.searchpage.mutationObserver.observe(target, config);
+}
+
+blocklist.searchpage.modifySearchResultsAdded = function (mutations) {
+  for (let i = 0; i < mutations.length; i++) {
+    let mutation = mutations[i];
+    let nodes = mutation.addedNodes;
+
+    if (nodes.length !== 3) continue;
+
+    let div_tag = nodes[1];
+    if (div_tag.tagName !== "DIV") continue;
+
+    let new_srp_div = div_tag.parentNode;
+    if (!(/arc-srp_([0-9]+)/).test(new_srp_div.id)) continue;
+
+    blocklist.searchpage.modifySearchResults(new_srp_div);
+  };
+}
+
 blocklist.searchpage.refreshBlocklist();
 blocklist.searchpage.getPwsOption();
 
 document.addEventListener("DOMContentLoaded", function () {
-  blocklist.searchpage.modifySearchResults();
+  blocklist.searchpage.initMutationObserver();
+  blocklist.searchpage.modifySearchResults(document);
 }, false);
