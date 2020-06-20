@@ -34,7 +34,7 @@ blocklist.manager.createBlocklistPattern = function (pattern) {
   patRowDeleteButton.appendTo(patRow);
 
   let patRowHostName = $(
-    '<div class="pattern-block">' + pattern + '<div>');
+    '<div class="pattern-block">' + pattern + '</div>');
   patRowHostName.appendTo(patRow);
 
   patRowDeleteButton.on("click", function () {
