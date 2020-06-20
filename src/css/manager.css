@@ -39,19 +39,22 @@ h2 {
 
 #io-area {
   z-index: 9999;
-  min-width: 400px;
-  width: 100%;
+  width: 400px;
   height: 600px;
   min-height: 600px;
   transition: 0.3s;
-  transform: translate(-400px);
+  transform: translate(-100%);
   box-sizing: border-box;
   padding: 10px 20px;
   position: fixed;
   top: 0;
   right: 0;
-
   background-color: #fff;
+}
+
+.pattern-block {
+  max-width: 60%;
+  overflow-x: scroll;
 }
 
 .io-area-open {

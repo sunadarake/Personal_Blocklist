@@ -1,7 +1,7 @@
 {
   "update_url": "https://clients2.google.com/service/update2/crx",
   "name": "Personal Blocklist(not by Google)",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Block Website from Google search results",
   "manifest_version": 2,
   "default_locale": "en",

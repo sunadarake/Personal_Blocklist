@@ -24,7 +24,7 @@ blocklist.manager.handleAddBlocklistResponse = function (response) {
 
 blocklist.manager.createBlocklistPattern = function (pattern) {
   let patRow = $(
-    '<div style="display:flex;font-size:16px;margin:10px 0;padding:5px 0;border-bottom:1px solid #f2f2f2;"></div>');
+    '<div style="max-width:350px;white-space: nowrap;display:flex;font-size:16px;margin:10px 0;padding:5px 0;border-bottom:1px solid #f2f2f2;"></div>');
   let patRowDeleteButton = $('<div class="isBlocked" style="margin-right: 15px;"></div>');
   let span = $('<span style="color:#1a0dab;margin:0;text-decoration:underline;cursor: pointer;">' +
     chrome.i18n.getMessage('removeUrlFromBlocklist') +
@@ -34,7 +34,7 @@ blocklist.manager.createBlocklistPattern = function (pattern) {
   patRowDeleteButton.appendTo(patRow);
 
   let patRowHostName = $(
-    '<div>' + pattern + '<div>');
+    '<div class="pattern-block">' + pattern + '<div>');
   patRowHostName.appendTo(patRow);
 
   patRowDeleteButton.on("click", function () {
@@ -212,7 +212,7 @@ blocklist.manager.handleExportButton = function (response) {
   $("#io-area").toggleClass('io-area-open');
 }
 
-blocklist.manager.localizeHeader = function() {
+blocklist.manager.localizeHeader = function () {
   let blockListHeader = $("#blockListHeader");
   blockListHeader.html(chrome.i18n.getMessage("blockListHeader"));
 }
