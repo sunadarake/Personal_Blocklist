@@ -9,6 +9,8 @@ blocklist.searchpage.pws_option = "off";
 
 blocklist.searchpage.SEARCH_RESULT_DIV_BOX = "div.g";
 
+blocklist.searchpage.LINK_TAG = "div.yuRUbf > a";
+
 blocklist.searchpage.handleGetBlocklistResponse = function (response) {
   if (response.blocklist != undefined) {
     blocklist.searchpage.blocklist = response.blocklist;
@@ -81,7 +83,7 @@ blocklist.searchpage.toggleSections = function (pattern, display) {
 
   for (let i = 0, length = searchResultPatterns.length; i < length; i++) {
     var searchResultPattern = searchResultPatterns[i];
-    var searchResultHostLink = searchResultPattern.querySelector("div.r > a");
+    var searchResultHostLink = searchResultPattern.querySelector(blocklist.searchpage.LINK_TAG);
     if (searchResultHostLink) {
       var HostLinkHref = searchResultHostLink.getAttribute("href");
       var sectionLink = HostLinkHref.replace(blocklist.common.HOST_REGEX, '$2');
@@ -130,7 +132,7 @@ blocklist.searchpage.modifySearchResults = function (parent_dom) {
 
   for (let i = 0, length = searchResultPatterns.length; i < length; i++) {
     var searchResultPattern = searchResultPatterns[i];
-    var searchResultHostLink = searchResultPattern.querySelector("div.r > a");
+    var searchResultHostLink = searchResultPattern.querySelector(blocklist.searchpage.LINK_TAG);
     if (searchResultHostLink) {
       var HostLinkHref = searchResultHostLink.getAttribute("href");
       var HostLinkPattern = blocklist.common.getHostNameFromUrl(HostLinkHref);
