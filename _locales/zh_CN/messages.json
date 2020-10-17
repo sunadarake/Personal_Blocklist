@@ -1,6 +1,6 @@
 {
   "completeBlocked": {
-    "message": "拉黑了 $pattern$",
+    "message": "屏蔽了 $pattern$",
     "description": "ブロックしました",
     "placeholders": {
       "pattern": {
@@ -10,7 +10,7 @@
     }
   },
   "addBlocklist": {
-    "message": "拉黑 $pattern$",
+    "message": "屏蔽 $pattern$",
     "description": "patternをブロックする",
     "placeholders": {
       "pattern": {
@@ -38,23 +38,43 @@
     "description": "ブロックする"
   },
   "removeUrlFromBlocklist": {
-    "message": "允许",
+    "message": "移除",
     "description": "ブロック解除"
   },
   "pws_option_mes": {
-    "message": "网址上使用pws = 0时停止阻止",
+    "message": "在网址使用pws = 0时不阻止",
     "description": "stop blocking when using pws=0 at URL"
   },
+  "blockListHeader": {
+    "message": "已屏蔽列表",
+    "description": "Block list header"
+  },
   "save": {
-    "message": "拯救",
+    "message": "保存",
     "description": "Save"
   },
   "copy": {
-    "message": "所有的副本",
+    "message": "复制全部",
     "description": "Copy all"
   },
   "back": {
-    "message": "回去",
+    "message": "返回",
     "description": "Back"
+  },
+  "import": {
+    "message": "导入",
+    "description": "Import"
+  },
+  "export": {
+    "message": "导出",
+    "description": "Export"
+  },
+  "importDescription": {
+    "message": "输入要添加的url列表(一行一个):",
+    "description": "Import Description."
+  },
+  "exportDescription": {
+    "message": "复制列表至剪贴板",
+    "description": "Export Description."
   }
 }
