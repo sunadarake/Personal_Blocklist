@@ -78,7 +78,11 @@
     "description": "Назад"
   },
   "pws_option_mes": {
-    "message": "прекращение блокировки при использовании pws=0 по URL",
-    "description": "прекращение блокировки при использовании pws=0 по URL"
+    "message": "Прекращение блокировки при использовании pws=0 по URL",
+    "description": "Прекращение блокировки при использовании pws=0 по URL"
+  },
+  "show_links_option_mes": {
+    "message": "Показывать ссылки \"Block URL\" под результатами поиска",
+    "description": "Show \"Block URL\" links under search results"
   }
 }

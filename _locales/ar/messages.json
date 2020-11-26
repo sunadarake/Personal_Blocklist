@@ -65,6 +65,10 @@
     "message": "في رابط البحث &pws=0 إيقاف الحظر عند إضافة",
     "description": "stop blocking when using pws=0 at URL"
   },
+  "show_links_option_mes": {
+    "message": "Show \"Block URL\" links under search results",
+    "description": "Show \"Block URL\" links under search results"
+  },
   "save": {
     "message": "حفظ",
     "description": "Save"

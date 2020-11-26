@@ -65,6 +65,10 @@
     "message": "URLにpws=0を使用時、ブロックしない",
     "description": "stop blocking when using pws=0 at URL"
   },
+  "show_links_option_mes": {
+    "message": "Show \"Block URL\" links under search results",
+    "description": "Show \"Block URL\" links under search results"
+  },
   "save": {
     "message": "保存",
     "description": "Save"

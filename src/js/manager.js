@@ -248,6 +248,13 @@ blocklist.manager.createPwsOptionBox = function () {
     blocklist.manager.handlePwsOptionBox);
 }
 
+blocklist.manager.createShowLinksOptionBox = function () {
+    chrome.runtime.sendMessage({
+      type: blocklist.common.GET_SHOW_LINKS_OPTION_VAL
+    },
+      blocklist.manager.handleShowLinksOptionBox);
+  }
+
 blocklist.manager.handlePwsOptionBox = function (response) {
   $("#pws_option_mes").text(chrome.i18n.getMessage("pws_option_mes"));
 
@@ -260,6 +267,18 @@ blocklist.manager.handlePwsOptionBox = function (response) {
   });
 }
 
+blocklist.manager.handleShowLinksOptionBox = function (response) {
+    $("#show_links_option_mes").text(chrome.i18n.getMessage("show_links_option_mes"));
+  
+    if (response.show_links_option == "on")
+      $("#show_links_option").prop("checked", true);
+  
+    $("#show_links_option").on("change", function () {
+      let val = $("#show_links_option").prop("checked") ? "on" : "off";
+      blocklist.manager.clickShowLinksOptionCheckbox(val);
+    });
+  }
+
 blocklist.manager.clickPwsOptionCheckbox = function (val) {
   chrome.runtime.sendMessage({
     type: blocklist.common.CHANGE_PWS_OPTION_VAL,
@@ -268,10 +287,27 @@ blocklist.manager.clickPwsOptionCheckbox = function (val) {
     blocklist.manager.handlePwsOptionCheckboxResult);
 };
 
+blocklist.manager.clickShowLinksOptionCheckbox = function (val) {
+    chrome.runtime.sendMessage({
+      type: blocklist.common.CHANGE_SHOW_LINKS_OPTION_VAL,
+      val: val
+    },
+      blocklist.manager.handleShowLinksOptionCheckboxResult);
+
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.reload(tabs[0].id);
+      });
+  };
+
 blocklist.manager.handlePwsOptionCheckboxResult = function (response) {
   if (blocklist.common.pws_option_val)
     blocklist.common.pws_option_val = response.pws_option;
 }
+
+blocklist.manager.handleShowLinksOptionCheckboxResult = function (response) {
+    if (blocklist.common.show_links_option_val)
+      blocklist.common.show_links_option_val = response.show_links_option;
+  }
 
 document.addEventListener('DOMContentLoaded', function () {
   blocklist.manager.refresh();
@@ -279,6 +315,7 @@ document.addEventListener('DOMContentLoaded', function () {
   blocklist.manager.createIoButton();
   blocklist.manager.createBackButton();
   blocklist.manager.createPwsOptionBox();
+  blocklist.manager.createShowLinksOptionBox();
 });
 
 

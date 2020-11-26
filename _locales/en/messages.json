@@ -66,8 +66,12 @@
     "description": "Block list of patterns"
   },
   "pws_option_mes": {
-    "message": "stop blocking when using pws=0 at URL",
-    "description": "stop blocking when using pws=0 at URL"
+    "message": "Stop blocking when using pws=0 at URL",
+    "description": "Stop blocking when using pws=0 at URL"
+  },
+  "show_links_option_mes": {
+    "message": "Show \"Block URL\" links under search results",
+    "description": "Show \"Block URL\" links under search results"
   },
   "save": {
     "message": "Save",
