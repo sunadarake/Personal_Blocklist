@@ -45,6 +45,10 @@
     "message": "网址上使用pws = 0时停止阻止",
     "description": "stop blocking when using pws=0 at URL"
   },
+  "show_links_option_mes": {
+    "message": "Show \"Block URL\" links under search results",
+    "description": "Show \"Block URL\" links under search results"
+  },
   "save": {
     "message": "拯救",
     "description": "Save"

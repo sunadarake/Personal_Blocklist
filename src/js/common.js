@@ -4,12 +4,17 @@ blocklist.common = {};
 
 blocklist.common.pws_option_val = "off";
 
+blocklist.common.show_links_option_val = "off";
+
 blocklist.common.GET_BLOCKLIST = 'getBlocklist';
 blocklist.common.ADD_TO_BLOCKLIST = 'addToBlocklist';
 blocklist.common.ADD_LIST_TO_BLOCKLIST = 'addListToBlocklist';
 blocklist.common.DELETE_FROM_BLOCKLIST = 'deleteFromBlocklist';
 blocklist.common.GET_PWS_OPTION_VAL = "getPwsOptionVal";
 blocklist.common.CHANGE_PWS_OPTION_VAL = "changePwsOptionVal";
+
+blocklist.common.GET_SHOW_LINKS_OPTION_VAL = "getShowLinksOptionVal";
+blocklist.common.CHANGE_SHOW_LINKS_OPTION_VAL = "changeShowLinksOptionVal";
 
 blocklist.common.HOST_REGEX = new RegExp(
   '^https?://(www[.])?([0-9a-zA-Z.-]+).*$');
@@ -85,6 +90,19 @@ blocklist.common.startBackgroundListeners = function () {
 
         sendResponse({
           pws_option: request.val
+        });
+      } else if (request.type == blocklist.common.GET_SHOW_LINKS_OPTION_VAL) {
+        if (!localStorage.blocklist_show_links_option)
+          localStorage['blocklist_show_links_option'] = "off";
+
+        sendResponse({
+          show_links_option: localStorage['blocklist_show_links_option']
+        });
+      } else if (request.type == blocklist.common.CHANGE_SHOW_LINKS_OPTION_VAL) {
+        localStorage['blocklist_show_links_option'] = request.val;
+
+        sendResponse({
+            show_links_option: request.val
         });
       }
     }

@@ -7,6 +7,8 @@ blocklist.searchpage.mutationObserver = null;
 
 blocklist.searchpage.pws_option = "off";
 
+blocklist.searchpage.show_links_option = "off";
+
 blocklist.searchpage.SEARCH_RESULT_DIV_BOX = "div.g";
 
 blocklist.searchpage.LINK_TAG = "div.yuRUbf > a";
@@ -106,15 +108,17 @@ blocklist.searchpage.addBlocklistFromSearchResult = function (hostlink, searchre
 };
 
 blocklist.searchpage.insertAddBlockLinkInSearchResult = function (searchResult, hostlink) {
-  var insertLink = document.createElement('p');
-  insertLink.innerHTML = chrome.i18n.getMessage("addBlocklist", hostlink);
-  insertLink.style.cssText =
-    "color:#1a0dab;margin:0;text-decoration:underline;cursor: pointer;";
-  searchResult.appendChild(insertLink);
+  if (blocklist.searchpage.show_links_option == "on") {
+    var insertLink = document.createElement('p');
+    insertLink.innerHTML = chrome.i18n.getMessage("addBlocklist", hostlink);
+    insertLink.style.cssText =
+        "color:#1a0dab;margin:0;text-decoration:underline;cursor: pointer;";
+    searchResult.appendChild(insertLink);
 
-  insertLink.addEventListener("click", function () {
-    blocklist.searchpage.addBlocklistFromSearchResult(hostlink, searchResult);
-  }, false);
+    insertLink.addEventListener("click", function () {
+        blocklist.searchpage.addBlocklistFromSearchResult(hostlink, searchResult);
+    }, false);
+  }
 };
 
 blocklist.searchpage.isPwsFeatureUsed = function () {
@@ -161,8 +165,19 @@ blocklist.searchpage.getPwsOption = function () {
     blocklist.searchpage.handleGetPwsOptionResponse);
 }
 
+blocklist.searchpage.getShowLinksOption = function () {
+  chrome.runtime.sendMessage({
+    type: blocklist.common.GET_SHOW_LINKS_OPTION_VAL
+  },
+    blocklist.searchpage.handleGetShowLinksOptionResponse);
+}
+
 blocklist.searchpage.handleGetPwsOptionResponse = function (response) {
   blocklist.searchpage.pws_option = response.pws_option;
+}
+
+blocklist.searchpage.handleGetShowLinksOptionResponse = function (response) {
+  blocklist.searchpage.show_links_option = response.show_links_option;
 }
 
 blocklist.searchpage.initMutationObserver = function () {
@@ -197,6 +212,7 @@ blocklist.searchpage.modifySearchResultsAdded = function (mutations) {
 
 blocklist.searchpage.refreshBlocklist();
 blocklist.searchpage.getPwsOption();
+blocklist.searchpage.getShowLinksOption();
 
 document.addEventListener("DOMContentLoaded", function () {
   blocklist.searchpage.initMutationObserver();
