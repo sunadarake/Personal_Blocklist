@@ -175,7 +175,9 @@ blocklist.searchpage.initMutationObserver = function () {
   const SEARCH_RESULTS_WRAP = "div#center_col";
   let target = document.querySelector(SEARCH_RESULTS_WRAP);
   let config = { childList: true, subtree: true };
-  blocklist.searchpage.mutationObserver.observe(target, config);
+  if (target != null) { // null or undefined
+    blocklist.searchpage.mutationObserver.observe(target, config);
+  }
 }
 
 blocklist.searchpage.modifySearchResultsAdded = function (mutations) {
