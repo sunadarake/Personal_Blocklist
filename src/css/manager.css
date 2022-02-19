@@ -7,6 +7,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  font-family: sans-serif;
   box-sizing: border-box;
 }
 
@@ -28,7 +29,7 @@ body {
 }
 
 #content {
-  padding: 30px 20px 10px;
+  padding: 10px 20px;
   box-sizing: border-box;
 }
 
@@ -48,7 +49,7 @@ h2 {
   padding: 10px 20px;
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   background-color: #fff;
 }
 

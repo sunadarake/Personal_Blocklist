@@ -95,6 +95,7 @@ blocklist.manager.addBlockCurrentHostLink = function (blocklistPatterns) {
     active: true,
     currentWindow: true
   }, function (tabs) {
+    if(["about", "chrome", "chrome-extension", "moz-extension"].includes(tabs[0].url.split(":")[0])) return;
     let pattern = blocklist.common.getHostNameFromUrl(tabs[0].url);
 
     if (blocklistPatterns.indexOf(pattern) == -1) {
@@ -111,6 +112,7 @@ blocklist.manager.addBlockCurrentHostLink = function (blocklistPatterns) {
         chrome.i18n.getMessage('completeBlocked', pattern) +
         '</p>');
     };
+    $("#current-blocklink").show();
   });
 }
 
