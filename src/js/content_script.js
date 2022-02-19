@@ -11,6 +11,7 @@ blocklist.searchpage.SEARCH_RESULT_DIV_BOX = "div.g";
 
 blocklist.searchpage.LINK_TAG = "div.yuRUbf > a";
 
+
 blocklist.searchpage.handleGetBlocklistResponse = function (response) {
   if (response.blocklist != undefined) {
     blocklist.searchpage.blocklist = response.blocklist;
@@ -33,12 +34,12 @@ blocklist.searchpage.handleAddBlocklistFromSerachResult = function (response) {
 
 blocklist.searchpage.showAddBlocklistMessage = function (pattern, section) {
   let showMessage = document.createElement('div');
-  showMessage.style.cssText = 'font-size:15px;background:#d8f7eb;padding:30px;margin:20px 0;box-sizing:border-box;';
+  showMessage.style.cssText = 'font-size:15px;padding:30px;margin:20px 0;box-sizing:border-box;background:#' + (darkTheme ? "303134" : "d8f7eb") + ';';
   showMessage.innerHTML = chrome.i18n.getMessage("completeBlocked", pattern);
 
   let cancelMessage = document.createElement('div');
   cancelMessage.classList.add("cancleBlock");
-  cancelMessage.style.cssText = "cursor: pointer;margin-top:20px;font-size:16px;font-weight: 700; color: #0066c0;";
+  cancelMessage.style.cssText = "cursor: pointer;margin-top:20px;font-size:16px;font-weight: 700; color: #" + (darkTheme ? "8ab4f8" : "0066c0") + ";";
   cancelMessage.innerHTML = chrome.i18n.getMessage("cancleBlocked", pattern);
   cancelMessage.addEventListener("click", function (e) {
     blocklist.searchpage.removePatternFromBlocklists(pattern);
@@ -109,7 +110,7 @@ blocklist.searchpage.insertAddBlockLinkInSearchResult = function (searchResult, 
   var insertLink = document.createElement('p');
   insertLink.innerHTML = chrome.i18n.getMessage("addBlocklist", hostlink);
   insertLink.style.cssText =
-    "color:#1a0dab;margin:0;text-decoration:underline;cursor: pointer;";
+    "margin:0;text-decoration:underline;cursor: pointer;color:#" + (darkTheme ? "8ab4f8" : "1a0dab") + ";";
   searchResult.appendChild(insertLink);
 
   insertLink.addEventListener("click", function () {
@@ -199,6 +200,7 @@ blocklist.searchpage.refreshBlocklist();
 blocklist.searchpage.getPwsOption();
 
 document.addEventListener("DOMContentLoaded", function () {
+  window.darkTheme = (getComputedStyle(document.body).backgroundColor !== "rgb(255, 255, 255)");
   blocklist.searchpage.initMutationObserver();
   blocklist.searchpage.modifySearchResults(document);
 }, false);
